@@ -1,6 +1,8 @@
 /* *********** DOM VARIABLES *********** */
 
 let myLibrary = [];
+let bookCounter = 0;
+let sectionBooks = document.querySelector(".books");
 let sectionAddBook = document.querySelector(".addBooks");
 let inputTitle = document.getElementById("title");
 let inputAuthor = document.getElementById("author");
@@ -10,7 +12,6 @@ let inputReadedNo = document.getElementById("readedNo");
 let buttonSubmit = document.getElementById("buttonSubmitBook");
 let warning = document.getElementById("warning");
 let buttonAddBook = document.getElementById("buttonAddBook");
-
 
 /* *********** BUTTON ADD BOOKS *********** */
 
@@ -61,6 +62,34 @@ function clearInputs(){
     else inputReadedNo.checked = false;
 }
 
+function displayBook(book, bookNumber){
+    let divBook = document.createElement("div");
+    let bookTitle = document.createElement("span");
+    let bookAuthor = document.createElement("span");
+    let bookPages = document.createElement("span");
+    let bookReaded = document.createElement("span");
+    let buttonDelete = document.createElement("button");
+    let buttonReaded = document.createElement("button");
+
+    divBook.setAttribute("data-bookNumber", bookNumber);
+
+    bookTitle.textContent = book.title;
+    bookAuthor.textContent = book.author;
+    bookPages.textContent = book.pages;
+    bookReaded.textContent = book.readed ? "Yes" : "No";
+    buttonDelete.textContent = "Delete Book";
+    buttonReaded.textContent = "Change Status";
+
+    divBook.appendChild(bookTitle);
+    divBook.appendChild(bookAuthor);
+    divBook.appendChild(bookPages);
+    divBook.appendChild(bookReaded);
+    divBook.appendChild(buttonDelete);
+    divBook.appendChild(buttonReaded);
+
+    sectionBooks.appendChild(divBook);
+}
+
 function addBookToLibrary(event){
     event.preventDefault();
     let readed;
@@ -68,7 +97,8 @@ function addBookToLibrary(event){
     let book = new Book(inputTitle.value, inputAuthor.value, inputPages.value, readed);
     if(verifyInputs()){
         myLibrary.push(book);
-        console.log(myLibrary);
+        bookCounter++;
+        displayBook(book, bookCounter);
         clearInputs();
     } else {
         warning.textContent = "Please fill the empty places";
