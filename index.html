@@ -8,25 +8,31 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <h1>Enter a new book</h1>
-    <form action="">
-        <p id="warning"></p>
-        <label for="title">Title</label>
-        <input id="title" type="text">
-
-        <label for="author">Author</label>
-        <input id="author" type="text">
-        
-        <label for="pages">Pages</label>
-        <input id="pages" type="text">
-        
-        <fieldset>
-            <legend>Is readed?</legend>
-            <input type="radio" id="readedYes" name="readed"><label for="readedYes">Yes</label>
-            <input type="radio" id="readedNo" name="readed"><label for="readedNo">No</label>
-        </fieldset>
-        <button id="buttonSubmit">Submit</button>
-    </form>
+    <h1>Welcome to the library!</h1>
+    
+    <button id="buttonAddBook">New Book</button>
+    
+    <section class="addBooks">
+        <h2>Enter a new book</h2>
+        <form action="">
+            <p id="warning"></p>
+            <label for="title">Title</label>
+            <input id="title" type="text">
+    
+            <label for="author">Author</label>
+            <input id="author" type="text">
+            
+            <label for="pages">Pages</label>
+            <input id="pages" type="text">
+            
+            <fieldset>
+                <legend>Is readed?</legend>
+                <input type="radio" id="readedYes" name="readed"><label for="readedYes">Yes</label>
+                <input type="radio" id="readedNo" name="readed"><label for="readedNo">No</label>
+            </fieldset>
+            <button id="buttonSubmitBook">Add Book</button>
+        </form>
+    </section>
     <script src="scripts/main.js"></script>
 </body>
 </html>

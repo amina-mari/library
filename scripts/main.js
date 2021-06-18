@@ -1,11 +1,31 @@
+/* *********** DOM VARIABLES *********** */
+
 let myLibrary = [];
+let sectionAddBook = document.querySelector(".addBooks");
 let inputTitle = document.getElementById("title");
 let inputAuthor = document.getElementById("author");
 let inputPages = document.getElementById("pages");
 let inputReadedYes = document.getElementById("readedYes");
 let inputReadedNo = document.getElementById("readedNo");
-let buttonSubmit = document.getElementById("buttonSubmit");
+let buttonSubmit = document.getElementById("buttonSubmitBook");
 let warning = document.getElementById("warning");
+let buttonAddBook = document.getElementById("buttonAddBook");
+
+
+/* *********** BUTTON ADD BOOKS *********** */
+
+sectionAddBook.style.display = "none";
+
+buttonAddBook.addEventListener("click", function(){
+    if(sectionAddBook.style.display === "none") {
+        sectionAddBook.style.display = "block";
+        event.currentTarget.textContent = "Close";
+    }
+    else {
+        sectionAddBook.style.display = "none";
+        event.currentTarget.textContent = "New Book";
+    };
+})
 
 // Book constructor
 
@@ -19,6 +39,7 @@ function Book(title, author, pages, readed){
         return (`${this.title} by ${this.author}, ${this.pages}${typeof this.pages === "number" ? this.pages === 1  ? " page": " pages" : ""}, ${this.readed? "readed": "not readed yet"}`);
     }
 };
+
 
 /* *********** ADD BOOKS *********** */
 
