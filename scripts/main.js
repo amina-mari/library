@@ -35,9 +35,13 @@ function Book(title, author, pages, readed){
     this.author = author;
     this.pages = pages > 0 ? pages : "invalid number of pages";
     this.readed = readed;
+    this.id;
 
     this.info = function(){
         return (`${this.title} by ${this.author}, ${this.pages}${typeof this.pages === "number" ? this.pages === 1  ? " page": " pages" : ""}, ${this.readed? "readed": "not readed yet"}`);
+    }
+    this.toggleReaded = function(){
+        this.readed = !(this.readed);
     }
 };
 
@@ -63,6 +67,7 @@ function clearInputs(){
 }
 
 function displayBook(book, bookNumber){
+    book.id = bookNumber;
     let divBook = document.createElement("div");
     let bookTitle = document.createElement("span");
     let bookAuthor = document.createElement("span");
@@ -71,14 +76,26 @@ function displayBook(book, bookNumber){
     let buttonDelete = document.createElement("button");
     let buttonReaded = document.createElement("button");
 
-    divBook.setAttribute("data-bookNumber", bookNumber);
-
     bookTitle.textContent = book.title;
     bookAuthor.textContent = book.author;
     bookPages.textContent = book.pages;
     bookReaded.textContent = book.readed ? "Yes" : "No";
     buttonDelete.textContent = "Delete Book";
     buttonReaded.textContent = "Change Status";
+
+    buttonDelete.addEventListener("click", function(){
+        for(let i = 0; i < myLibrary.length; i++){
+            if(myLibrary[i].id === bookNumber) {
+                myLibrary.splice(i, 1);
+            }
+        }
+        sectionBooks.removeChild(divBook);  
+    })
+
+    buttonReaded.addEventListener("click", function(){
+        book.toggleReaded();
+        bookReaded.textContent = book.readed ? "Yes" : "No";
+    })
 
     divBook.appendChild(bookTitle);
     divBook.appendChild(bookAuthor);
@@ -92,7 +109,7 @@ function displayBook(book, bookNumber){
 
 function addBookToLibrary(event){
     event.preventDefault();
-    let readed;
+    let readed = false;
     if(inputReadedYes.checked) readed = true;
     let book = new Book(inputTitle.value, inputAuthor.value, inputPages.value, readed);
     if(verifyInputs()){
