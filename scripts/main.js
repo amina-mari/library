@@ -17,7 +17,7 @@ let buttonAddBook = document.getElementById("buttonAddBook");
 
 sectionAddBook.style.display = "none";
 
-buttonAddBook.addEventListener("click", function(){
+buttonAddBook.addEventListener("click", function(event){
     if(sectionAddBook.style.display === "none") {
         sectionAddBook.style.display = "block";
         event.currentTarget.textContent = "Close";
@@ -66,8 +66,7 @@ function clearInputs(){
     else inputReadedNo.checked = false;
 }
 
-function displayBook(book, bookNumber){
-    book.id = bookNumber;
+function displayBook(book){
     let divBook = document.createElement("div");
     let bookTitle = document.createElement("span");
     let bookAuthor = document.createElement("span");
@@ -85,7 +84,7 @@ function displayBook(book, bookNumber){
 
     buttonDelete.addEventListener("click", function(){
         for(let i = 0; i < myLibrary.length; i++){
-            if(myLibrary[i].id === bookNumber) {
+            if(myLibrary[i].id === book.id) {
                 myLibrary.splice(i, 1);
             }
         }
@@ -109,13 +108,17 @@ function displayBook(book, bookNumber){
 
 function addBookToLibrary(event){
     event.preventDefault();
-    let readed = false;
-    if(inputReadedYes.checked) readed = true;
-    let book = new Book(inputTitle.value, inputAuthor.value, inputPages.value, readed);
+    
     if(verifyInputs()){
-        myLibrary.push(book);
         bookCounter++;
-        displayBook(book, bookCounter);
+        let readed = false;
+        if(inputReadedYes.checked) readed = true;
+        
+        let book = new Book(inputTitle.value, inputAuthor.value, inputPages.value, readed);
+        book.id = bookCounter;
+        
+        myLibrary.push(book);
+        displayBook(book);
         clearInputs();
     } else {
         warning.textContent = "Please fill the empty places";
