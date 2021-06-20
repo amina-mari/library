@@ -1,7 +1,6 @@
 /* *********** DOM VARIABLES *********** */
 
-let myLibrary = [];
-let bookCounter = 0;
+let bookCounter;
 let sectionBooks = document.querySelector(".books");
 let sectionAddBook = document.querySelector(".addBooks");
 let inputTitle = document.getElementById("title");
@@ -12,6 +11,28 @@ let inputReadedNo = document.getElementById("readedNo");
 let buttonSubmit = document.getElementById("buttonSubmitBook");
 let warning = document.getElementById("warning");
 let buttonAddBook = document.getElementById("buttonAddBook");
+
+/* *********** LOCAL STORAGE *********** */
+// Verificar como faz pra manter o construtor mesmo com o JSON
+
+
+let myLibrary = [];
+let myLibraryStringfied = [];
+
+if(localStorage.getItem("myLibrary")) {
+    myLibraryStringfied = localStorage.getItem("myLibrary").split("/");
+    myLibrary = myLibraryStringfied.map(book => JSON.parse(book));
+    myLibrary.map(book => displayBook(book));
+    let counter = 0;
+    for(let i = 0; i < myLibrary.length; i++){
+        if(myLibrary[i].id > counter) counter = myLibrary[i].id;
+    }
+    bookCounter = counter;
+}
+else {
+    localStorage.setItem("myLibrary", "");
+    bookCounter = 0;
+}
 
 /* *********** BUTTON ADD BOOKS *********** */
 
@@ -86,13 +107,24 @@ function displayBook(book){
         for(let i = 0; i < myLibrary.length; i++){
             if(myLibrary[i].id === book.id) {
                 myLibrary.splice(i, 1);
+                myLibraryStringfied.splice(i, 1);
+                localStorage.setItem("myLibrary", myLibraryStringfied.join("/"));
             }
         }
         sectionBooks.removeChild(divBook);  
     })
 
     buttonReaded.addEventListener("click", function(){
-        book.toggleReaded();
+        book.readed = !(book.readed);
+        for(let i = 0; i < myLibrary.length; i++){
+            if(myLibrary[i].id === book.id) {
+                let bookParsed = JSON.parse(myLibraryStringfied[i]);
+                bookParsed.readed = !(bookParsed.readed);
+                myLibraryStringfied.splice(i, 1, JSON.stringify(bookParsed));
+                localStorage.setItem("myLibrary", myLibraryStringfied.join("/"));
+            }
+        }
+        localStorage.setItem("myLibrary", myLibraryStringfied.join("/"));
         bookReaded.textContent = book.readed ? "Yes" : "No";
     })
 
@@ -118,6 +150,9 @@ function addBookToLibrary(event){
         book.id = bookCounter;
         
         myLibrary.push(book);
+        myLibraryStringfied.push(JSON.stringify(book));
+        localStorage.setItem("myLibrary", myLibraryStringfied.join("/"));
+        
         displayBook(book);
         clearInputs();
     } else {
