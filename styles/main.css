@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat';
+}
+
+.books {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.books > div:nth-child(odd){
+    background-color: rgba(71, 61, 139, 0.055);
+}
+
+.divBook {
+    color: darkslateblue;
+    text-align: center;
+    min-width: 200px;
+    max-width: 300px;
+    min-height: 200px;
+    max-height: 300px;
+    overflow: auto;
+    padding: 20px;
+    border-radius: 5px;
+    border: 3px solid darkslateblue;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.divBook .divBook_bookTitle {
+    font-family: 'Cinzel';
+    font-weight: 700;
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+}
+
+.divBook .divBook_divContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.divBook p {
+    margin: 0px;
+}
+
+.divBook span {
+    font-weight: 600;
+}
+
+.divBook button {
+    background-color: white;
+    height: 30px;
+    border-radius: 15px;
+    outline: none;
+    font-weight: bold;
+    transition: all 0.3s;
+    padding: 0px 10px;
+}
+
+.divBook_buttonDelete {
+    border: 2px solid #e96e45;
+    color: #e96e45;
+}
+
+.divBook_buttonReaded {
+    border: 2px solid darkslateblue;
+    margin-left: 10px;
+    color: darkslateblue;
+}
+
+.divBook_buttonDelete:hover {
+    background-color: #e96e45;
+    color: white;
+}
+
+.divBook_buttonReaded:hover {
+    background-color: darkslateblue;
+    color: white;
+}
+
+.divBook button:hover {
+    cursor: pointer;
+}
+
+
+
+
+

@@ -88,20 +88,44 @@ function clearInputs(){
 }
 
 function displayBook(book){
+
+    /* DOM variables */
+
     let divBook = document.createElement("div");
     let bookTitle = document.createElement("span");
+    let divContent = document.createElement("div");
+    let paraAuthor = document.createElement("p");
     let bookAuthor = document.createElement("span");
-    let bookPages = document.createElement("span");
-    let bookReaded = document.createElement("span");
+    let bookPages = document.createElement("p");
+    let bookReaded = document.createElement("p");
+    let divButtons = document.createElement("div");
     let buttonDelete = document.createElement("button");
     let buttonReaded = document.createElement("button");
 
+
+    /* Styles */
+
+    divBook.style.boxShadow = book.readed ? "0px -5px white, 0px -8px #00fa9a" : "0px -5px white, 0px -8px #e9967a";
+    bookReaded.style.borderBottom = book.readed ? "2px solid #00fa9a" : "2px solid #e9967a";
+    divBook.classList.add("divBook");
+    bookTitle.classList.add("divBook_bookTitle");
+    divContent.classList.add("divBook_divContent");
+    buttonDelete.classList.add("divBook_buttonDelete");
+    buttonReaded.classList.add("divBook_buttonReaded");
+
+
+    /* Contents */
+
     bookTitle.textContent = book.title;
+    paraAuthor.textContent = "By "
     bookAuthor.textContent = book.author;
-    bookPages.textContent = book.pages;
-    bookReaded.textContent = book.readed ? "Yes" : "No";
-    buttonDelete.textContent = "Delete Book";
+    bookPages.textContent = `${book.pages} ${book.pages > 1 ? "pages" : "page"}`;
+    bookReaded.textContent = `Status: ${book.readed ? "Readed" : "Not readed yet"}`;
+    buttonDelete.textContent = "Delete";
     buttonReaded.textContent = "Change Status";
+
+
+    /* Event Listeners */
 
     buttonDelete.addEventListener("click", function(){
         for(let i = 0; i < myLibrary.length; i++){
@@ -125,15 +149,26 @@ function displayBook(book){
             }
         }
         localStorage.setItem("myLibrary", myLibraryStringfied.join("/"));
-        bookReaded.textContent = book.readed ? "Yes" : "No";
+        bookReaded.textContent = `Status: ${book.readed ? "Readed" : "Not readed yet"}`;
+        divBook.style.boxShadow = book.readed ? "0px -5px white, 0px -8px #00fa9a" : "0px -5px white, 0px -8px #e9967a";
+        bookReaded.style.borderBottom = book.readed ? "3px solid #00fa9a" : "3px solid #e9967a";
     })
 
+
+    /* Display */
+
+    paraAuthor.appendChild(bookAuthor);
+
+    divContent.appendChild(paraAuthor);
+    divContent.appendChild(bookPages);
+    divContent.appendChild(bookReaded);
+
+    divButtons.appendChild(buttonDelete);
+    divButtons.appendChild(buttonReaded);
+
     divBook.appendChild(bookTitle);
-    divBook.appendChild(bookAuthor);
-    divBook.appendChild(bookPages);
-    divBook.appendChild(bookReaded);
-    divBook.appendChild(buttonDelete);
-    divBook.appendChild(buttonReaded);
+    divBook.appendChild(divContent);
+    divBook.appendChild(divButtons);
 
     sectionBooks.appendChild(divBook);
 }
