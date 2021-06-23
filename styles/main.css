@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap');
 
 * {
@@ -9,14 +8,31 @@
     font-family: 'Montserrat';
 }
 
-.books {
-    margin-top: 50px;
+h1 {
+    font-family: 'Cinzel';
+    font-weight: 700;
+    width: 30%;
+    min-width: 220px;
+    margin: auto;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 70px;
+    background-color: darkslateblue;
+    border-bottom: 5px solid #e9967a;
+    border-top: 5px solid #e9967a;
+    padding: 20px;
+    color: white;
+}
+
+/* *********** SECTION BOOKSHELF *********** */
+
+.bookshelf {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
-.books > div:nth-child(odd){
+.bookshelf > div:nth-child(even){
     background-color: rgba(71, 61, 139, 0.055);
 }
 
@@ -95,7 +111,125 @@
     cursor: pointer;
 }
 
+#buttonAddBook {
+    display: block;
+    margin: auto;
+    background-color: darkslateblue;
+    color: white;
+    height: 50px;
+    border-radius: 25px;
+    border: 2px solid darkslateblue;
+    width: 20%;
+    min-width: 180px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    outline: none;
+    transition: all 0.3s;
+}
 
+#buttonAddBook:hover {
+    cursor: pointer;
+    background-color: white;
+    color: darkslateblue;
+}
 
+/* *********** SECTION ADD BOOKS *********** */
 
+.addBooks {
+    background-color: darkslateblue;
+    color: white;
+    padding: 50px;
+}
+
+.addBooks h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#warning {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.addBooks fieldset {
+    border: none;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
+form {
+    width: 40%;
+    margin: auto;
+}
+
+form > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: 600;
+}
+
+input {
+    outline: none;
+}
+
+input[type="text"]{
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: darkslateblue;
+    color: white;
+    width: 50%;
+    min-width: 200px;
+    transition: all 0.3s;
+}
+
+input[type="text"]:focus {
+    background-color: white;
+    color: darkslateblue;
+}
+
+legend {
+    flex-basis: 100%;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+#buttonSubmitBook {
+    display: block;
+    background-color: white;
+    color: darkslateblue;
+    font-weight: bold;
+    margin: auto;
+    width: 30%;
+    min-width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    border: 2px solid white;
+    transition: all 0.3s;
+    outline: none;    
+}
+
+#buttonSubmitBook:hover {
+    cursor: pointer;
+    background-color: darkslateblue;
+    color: white;
+}
+
+@media screen and (max-width: 600px) {
+    form {
+        width: 100%;
+    }
+}
 

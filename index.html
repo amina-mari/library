@@ -10,7 +10,7 @@
 <body>
     <h1>Your Bookshelf</h1>
     
-    <section class="books"></section>
+    <section class="bookshelf"></section>
 
     <button id="buttonAddBook">New Book</button>
     
@@ -18,20 +18,34 @@
         <h2>Enter a new book</h2>
         <form action="">
             <p id="warning"></p>
-            <label for="title">Title</label>
-            <input id="title" type="text">
-    
-            <label for="author">Author</label>
-            <input id="author" type="text">
-            
-            <label for="pages">Pages</label>
-            <input id="pages" type="text">
+            <div>
+                <label for="title">Title</label>
+                <input id="title" type="text">
+            </div>
+
+            <div>
+                <label for="author">Author</label>
+                <input id="author" type="text">
+            </div>
+
+            <div>
+                <label for="pages">Pages</label>
+                <input id="pages" type="text">
+            </div>
             
             <fieldset>
                 <legend>Is readed?</legend>
-                <input type="radio" id="readedYes" name="readed"><label for="readedYes">Yes</label>
-                <input type="radio" id="readedNo" name="readed"><label for="readedNo">No</label>
+                <div>
+                    <input type="radio" id="readedYes" name="readed">
+                    <label for="readedYes">Yes</label>
+                </div>
+                
+                <div>
+                    <input type="radio" id="readedNo" name="readed">
+                    <label for="readedNo">No</label>
+                </div>
             </fieldset>
+
             <button id="buttonSubmitBook">Add Book</button>
         </form>
     </section>

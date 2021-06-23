@@ -1,7 +1,7 @@
 /* *********** DOM VARIABLES *********** */
 
 let bookCounter;
-let sectionBooks = document.querySelector(".books");
+let sectionBooks = document.querySelector(".bookshelf");
 let sectionAddBook = document.querySelector(".addBooks");
 let inputTitle = document.getElementById("title");
 let inputAuthor = document.getElementById("author");
