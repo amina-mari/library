@@ -51,17 +51,23 @@ buttonAddBook.addEventListener("click", function(event){
 
 // Book constructor
 
-function Book(title, author, pages, readed){
-    this.title = title;
-    this.author = author;
-    this.pages = pages > 0 ? pages : "invalid number of pages";
-    this.readed = readed;
-    this.id;
+class Book{
+    constructor(title, author, pages, readed){
+        this.title = title;
+        this.author = author;
+        this.pages = pages > 0 ? pages : "invalid number of pages";
+        this.readed = readed;
+    }
 
-    this.info = function(){
+    set setId(id){
+        this.id = id;
+    }
+
+    info(){
         return (`${this.title} by ${this.author}, ${this.pages}${typeof this.pages === "number" ? this.pages === 1  ? " page": " pages" : ""}, ${this.readed? "readed": "not readed yet"}`);
     }
-    this.toggleReaded = function(){
+
+    toggleReaded(){
         this.readed = !(this.readed);
     }
 };
@@ -182,7 +188,7 @@ function addBookToLibrary(event){
         if(inputReadedYes.checked) readed = true;
         
         let book = new Book(inputTitle.value, inputAuthor.value, inputPages.value, readed);
-        book.id = bookCounter;
+        book.setId = bookCounter;
         
         myLibrary.push(book);
         myLibraryStringfied.push(JSON.stringify(book));
